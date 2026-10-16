@@ -1,3 +1,10 @@
+# Keep class and method names readable in release APKs while still letting R8
+# shrink unused code and resources. Obfuscated DEX identifiers combined with
+# libadb-android, app_process (InputServer), AccessibilityService, SMS, and
+# PackageInstaller trip Google Play Protect's sideload dropper heuristics
+# (which strip the "Install anyway" option on unrecognized signing keys).
+-dontobfuscate
+
 # Preserve annotations (required by JNA @Structure.FieldOrder on UniFFI structs),
 # generic signatures, inner classes ($ByValue / $ByReference), and line numbers.
 -keepattributes *Annotation*,Signature,InnerClasses,EnclosingMethod,SourceFile,LineNumberTable
